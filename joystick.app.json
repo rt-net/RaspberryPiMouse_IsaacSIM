@@ -1,0 +1,19 @@
+{
+  "name": "raspimouse",
+  "config_files": [
+    "apps/RaspberryPiMouse_IsaacSIM/joystick.config.json",
+    "apps/RaspberryPiMouse_IsaacSIM/raspimouse.config.json"
+  ],
+  "graph_files": [
+    "apps/RaspberryPiMouse_IsaacSIM/joystick.graph.json",
+    "apps/RaspberryPiMouse_IsaacSIM/raspimouse.graph.json"
+  ],
+  "modules": [
+    "navigation",
+    "flatsim",
+    "planner",
+    "viewers",
+    "sensors:joystick"
+  ],
+  "config": {},
+  "graph": { "nodes": [], "edges": [] } }

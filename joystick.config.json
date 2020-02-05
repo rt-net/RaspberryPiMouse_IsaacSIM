@@ -1,0 +1,31 @@
+{
+  "joystick": {
+    "isaac.Joystick": {
+      "tick_period": "50ms"
+    }
+  },
+  "virtual_gamepad_bridge": {
+    "VirtualGamepadBridge": {
+      "tick_period": "100ms"
+    }
+  },
+  "raspimouse_joystick": {
+    "isaac.alice.FailsafeHeartbeat": {
+      "interval": 0.25,
+      "failsafe_name": "raspimouse_failsafe",
+      "heartbeat_name": "deadman_switch"
+    },
+    "isaac.navigation.RobotRemoteControl": {
+      "tick_period": "10ms",
+      "linear_speed_max": 0.75,
+      "angular_speed_max": 10.0
+    }
+  },
+  "control": {
+    "isaac.planner.DifferentialBaseControl": {
+      "manual_mode_channel": "raspimouse_joystick/isaac.navigation.RobotRemoteControl/manual_mode",
+      "use_tick_time": true,
+      "tick_period": "100Hz"
+    }
+  }
+}

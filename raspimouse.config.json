@@ -1,0 +1,101 @@
+{
+  "shared_robot_model": {
+    "DifferentialBaseModel": {
+      "robot_radius": 0.065,
+      "base_length": 0.0935,
+      "wheel_radius": 0.024
+    }
+  },
+  "RealsenseD435ColorCameraViewer": {
+    "isaac.viewers.ColorCameraViewer": {
+      "target_fps": 15,
+      "reduce_scale": 2,
+      "camera_name": "RealsenseD435"
+    }
+  },
+  "RealsenseD435DepthCameraViewer": {
+    "isaac.viewers.DepthCameraViewer": {
+      "target_fps": 15,
+      "reduce_scale": 2,
+      "camera_name": "RealsenseD435"
+    }
+  },
+  "raspimouse_odometry": {
+    "isaac.navigation.DifferentialBaseWheelImuOdometry": {
+      "tick_period": "100Hz",
+      "use_imu": false
+    }
+  },
+  "base_simulation": {
+    "isaac.flatsim.DifferentialBaseSimulator": {
+      "flip_left_wheel": true,
+      "flip_right_wheel": true,
+      "joint_name_left_wheel": "left_wheel_joint",
+      "joint_name_right_wheel": "right_wheel_joint",
+      "tick_period": "100Hz"
+    },
+    "isaac.alice.Failsafe": {
+      "name": "raspimouse_failsafe"
+    }
+  },
+  "RigidBodySubscriber": {
+    "isaac.alice.TcpSubscriber": {
+      "port": 5001,
+      "host": "localhost"
+    }
+  },
+  "ActuatorPublisher": {
+    "isaac.alice.TcpPublisher": {
+      "port": 5002,
+      "host": "localhost"
+    }
+  },
+  "RealsenseD435CameraSubscriber": {
+    "RealsenseD435_camera_initializer": {
+      "lhs_frame": "robot",
+      "rhs_frame": "RealsenseD435",
+      "pose": [1, 0, 0, 0, 0.0957, 0, 0.06765]
+    },
+    "isaac.alice.TcpSubscriber": {
+      "port": 5003,
+      "host": "localhost"
+    }
+  },
+  "websight": {
+    "WebsightServer": {
+      "webroot": "packages/sight/webroot",
+      "assetroot": "../isaac_assets",
+      "port": 3000,
+      "ui_config": {
+        "windows": {
+          "Raspimouse Sim - RealsenseD435 Color": {
+            "renderer": "2d",
+            "dims": {
+              "width": 480,
+              "height": 270
+            },
+            "channels": [
+              {
+                "name": "raspimouse/RealsenseD435ColorCameraViewer/isaac.viewers.ColorCameraViewer/Color",
+                "active": true
+              }
+            ]
+          },
+          "Raspimouse Sim - RealsenseD435 Depth": {
+            "renderer": "2d",
+            "dims": {
+              "width": 480,
+              "height": 270
+            },
+            "channels": [
+              {
+                "name": "raspimouse/RealsenseD435DepthCameraViewer/isaac.viewers.DepthCameraViewer/Depth",
+                "active": true
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

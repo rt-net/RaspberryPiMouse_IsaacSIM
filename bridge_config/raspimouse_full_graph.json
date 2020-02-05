@@ -1,0 +1,100 @@
+{
+  "nodes": [
+    {
+      "name": "A_RaspimouseGroup",
+      "components": [
+        {
+          "name": "MessageLedger",
+          "type": "isaac::alice::MessageLedger"
+        },
+        {
+          "name": "ActorGroup",
+          "type": "isaac::sim_bridge::ActorGroup"
+        }
+      ]
+    },
+    {
+      "name": "RealsenseD435",
+      "components": [
+        {
+          "name": "MessageLedger",
+          "type": "isaac::alice::MessageLedger"
+        },
+        {
+          "name": "CameraComponent",
+          "type": "isaac::sim_bridge::Camera"
+        }
+      ]
+    },
+    {
+      "name": "RaspimouseActuator",
+      "components": [
+        {
+          "name": "MessageLedger",
+          "type": "isaac::alice::MessageLedger"
+        },
+        {
+          "name": "ActuatorComponent",
+          "type": "isaac::sim_bridge::ActuatorGroup"
+        }
+      ]
+    },
+    {
+      "name": "DepthCameraPublisher",
+      "components": [
+        {
+          "name": "isaac.alice.MessageLedger",
+          "type": "isaac::alice::MessageLedger"
+        },
+        {
+          "name": "isaac.alice.TcpPublisher",
+          "type": "isaac::alice::TcpPublisher"
+        }
+      ]
+    },
+    {
+      "name": "ActorPublisher",
+      "components": [
+        {
+          "name": "isaac.alice.MessageLedger",
+          "type": "isaac::alice::MessageLedger"
+        },
+        {
+          "name": "isaac.alice.TcpPublisher",
+          "type": "isaac::alice::TcpPublisher"
+        }
+      ]
+    },
+    {
+      "name": "ActuatorSubscriber",
+      "components": [
+        {
+          "name": "isaac.alice.MessageLedger",
+          "type": "isaac::alice::MessageLedger"
+        },
+        {
+          "name": "isaac.alice.TcpSubscriber",
+          "type": "isaac::alice::TcpSubscriber"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "A_RaspimouseGroup/ActorGroup/rigid_state",
+      "target": "ActorPublisher/isaac.alice.TcpPublisher/bodies"
+    },
+    {
+      "source": "ActuatorSubscriber/isaac.alice.TcpSubscriber/physics_actuation",
+      "target": "RaspimouseActuator/ActuatorComponent/physics_actuation"
+    },
+    {
+      "source": "RealsenseD435/CameraComponent/color_image",
+      "target": "DepthCameraPublisher/isaac.alice.TcpPublisher/ColorSensor"
+    },
+    {
+      "source": "RealsenseD435/CameraComponent/depth_image",
+      "target": "DepthCameraPublisher/isaac.alice.TcpPublisher/DepthSensor"
+    }
+  ]
+}

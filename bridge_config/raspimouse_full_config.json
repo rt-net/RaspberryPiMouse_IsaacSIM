@@ -1,0 +1,84 @@
+{
+  "A_RaspimouseGroup": {
+    "ActorGroup": {
+      "actors": [
+        {
+          "name": "raspimouse",
+          "reference": "URDF'raspimouse_description/urdf/raspimouse_realsense.urdf'",
+          "pose": [1, 0, 0, 0, 0, 0, 0.2],
+          "spawn_config":{
+            "solver_velocity_iterations": 1,
+            "solver_position_iterations": 16,
+            "default_drive_config":{
+              "mode":"idle"
+            },
+            "custom_drive_configs":{
+              "left_wheel_joint":{
+                "mode":"velocity_drive",
+                "drive_target":0,
+                "motor_strength":100000000.0,
+                "velocity_drive_strength":1000.0
+              },
+              "right_wheel_joint":{
+                "mode":"velocity_drive",
+                "drive_target":0,
+                "motor_strength":100000000.0,
+                "velocity_drive_strength":1000.0
+              }
+            },
+            "custom_link_configs":{
+              "left_wheel":{
+                "linear_damping":0.01,
+                "angular_damping":0.0,
+                "is_wheel":true
+              },
+              "right_wheel":{
+                "linear_damping":0.01,
+                "angular_damping":0.0,
+                "is_wheel":true
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "RealsenseD435": {
+    "CameraComponent": {
+      "parent_actor": "raspimouse",
+      "parent_T_camera": [1, 0, 0, 0, 0.0957, 0, 0.06765],
+      "cols": 1280,
+      "rows": 720,
+      "fov": 91.2,
+      "frequency": 30,
+      "enable_rgb": true,
+      "enable_depth": true,
+      "only_publish_latest": true,
+      "min_depth": 0.2,
+      "max_depth": 10
+    }
+  },
+  "RaspimouseActuator": {
+    "ActuatorComponent": {
+      "parent_actor": "raspimouse"
+    }
+  },
+  "ActorPublisher": {
+    "isaac.alice.TcpPublisher": {
+      "port": 5001,
+      "host": "localhost"
+    }
+  },
+  "ActuatorSubscriber": {
+    "isaac.alice.TcpSubscriber": {
+      "port": 5002,
+      "host": "localhost"
+    }
+  },
+  "DepthCameraPublisher": {
+    "isaac.alice.TcpPublisher": {
+      "port": 5003,
+      "host": "localhost"
+    }
+  }
+}

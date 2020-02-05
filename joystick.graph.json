@@ -1,0 +1,82 @@
+{
+  "nodes": [
+    {
+      "name": "control",
+      "components": [
+        {
+          "name": "message_ledger",
+          "type": "isaac::alice::MessageLedger"
+        },
+        {
+          "name": "isaac.planner.DifferentialBaseControl",
+          "type": "isaac::planner::DifferentialBaseControl"
+        }
+      ]
+    },
+    {
+      "name": "joystick",
+      "components": [
+        {
+          "name": "message_ledger",
+          "type": "isaac::alice::MessageLedger"
+        },
+        {
+          "name": "isaac.Joystick",
+          "type": "isaac::Joystick"
+        }
+      ]
+    },
+    {
+      "name": "raspimouse_joystick",
+      "components": [
+        {
+          "name": "message_ledger",
+          "type": "isaac::alice::MessageLedger"
+        },
+        {
+          "name": "isaac.navigation.RobotRemoteControl",
+          "type": "isaac::navigation::RobotRemoteControl"
+        },
+        {
+          "name": "isaac.alice.FailsafeHeartbeat",
+          "type": "isaac::alice::FailsafeHeartbeat"
+        }
+      ]
+    },
+    {
+      "name": "virtual_gamepad_bridge",
+      "components": [
+        {
+          "name": "message_ledger",
+          "type": "isaac::alice::MessageLedger"
+        },
+        {
+          "name": "VirtualGamepadBridge",
+          "type": "isaac::navigation::VirtualGamepadBridge"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "joystick/isaac.Joystick/js_state",
+      "target": "raspimouse_joystick/isaac.navigation.RobotRemoteControl/js_state"
+    },
+    {
+      "source": "virtual_gamepad_bridge/VirtualGamepadBridge/joystick",
+      "target": "raspimouse_joystick/isaac.navigation.RobotRemoteControl/js_state"
+    },
+    {
+      "source": "virtual_gamepad_bridge/VirtualGamepadBridge/reply",
+      "target": "websight/WebsightServer/virtual_gamepad_reply"
+    },
+    {
+      "source": "raspimouse_joystick/isaac.navigation.RobotRemoteControl/segway_cmd",
+      "target": "base_simulation/isaac.flatsim.DifferentialBaseSimulator/diff_base_command"
+    },
+    {
+      "source": "control/isaac.planner.DifferentialBaseControl/cmd",
+      "target": "raspimouse_joystick/isaac.navigation.RobotRemoteControl/ctrl"
+    }
+  ]
+}

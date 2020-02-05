@@ -1,0 +1,146 @@
+{
+  "nodes": [
+    {
+      "name": "shared_robot_model",
+      "components": [
+        {
+          "name": "RangeScanModel",
+          "type": "isaac::navigation::RangeScanModelFlatloc"
+        },
+        {
+          "name": "DifferentialBaseModel",
+          "type": "isaac::planner::DifferentialBaseModel"
+        }
+      ]
+    },
+    {
+      "name": "raspimouse_odometry",
+      "components": [
+        {
+          "name": "message_ledger",
+          "type": "isaac::alice::MessageLedger"
+        },
+        {
+          "name": "isaac.navigation.DifferentialBaseWheelImuOdometry",
+          "type": "isaac::navigation::DifferentialBaseWheelImuOdometry"
+        }
+      ]
+    },
+    {
+      "name": "base_simulation",
+      "components": [
+        {
+          "name": "message_ledger",
+          "type": "isaac::alice::MessageLedger"
+        },
+        {
+          "name": "isaac.flatsim.DifferentialBaseSimulator",
+          "type": "isaac::flatsim::DifferentialBaseSimulator"
+        },
+        {
+          "name": "isaac.alice.Failsafe",
+          "type": "isaac::alice::Failsafe"
+        }
+      ]
+    },
+    {
+      "name": "RealsenseD435CameraSubscriber",
+      "components": [
+        {
+          "name": "RealsenseD435_camera_initializer",
+          "type": "isaac::alice::PoseInitializer"
+        },
+        {
+          "name": "isaac.alice.MessageLedger",
+          "type": "isaac::alice::MessageLedger"
+        },
+        {
+          "name": "isaac.alice.TcpSubscriber",
+          "type": "isaac::alice::TcpSubscriber"
+        }
+      ]
+    },
+    {
+      "name": "RealsenseD435ColorCameraViewer",
+      "components": [
+        {
+          "name": "isaac.alice.MessageLedger",
+          "type": "isaac::alice::MessageLedger"
+        },
+        {
+          "name": "isaac.viewers.ColorCameraViewer",
+          "type": "isaac::viewers::ColorCameraViewer"
+        }
+      ]
+    },
+    {
+      "name": "RealsenseD435DepthCameraViewer",
+      "components": [
+        {
+          "name": "isaac.alice.MessageLedger",
+          "type": "isaac::alice::MessageLedger"
+        },
+        {
+          "name": "isaac.viewers.DepthCameraViewer",
+          "type": "isaac::viewers::DepthCameraViewer"
+        }
+      ]
+    },
+    {
+      "name": "ActuatorPublisher",
+      "components": [
+        {
+          "name": "isaac.alice.MessageLedger",
+          "type": "isaac::alice::MessageLedger"
+        },
+        {
+          "name": "isaac.alice.TcpPublisher",
+          "type": "isaac::alice::TcpPublisher"
+        }
+      ]
+    },
+    {
+      "name": "RigidBodySubscriber",
+      "components": [
+        {
+          "name": "isaac.alice.MessageLedger",
+          "type": "isaac::alice::MessageLedger"
+        },
+        {
+          "name": "isaac.alice.TcpSubscriber",
+          "type": "isaac::alice::TcpSubscriber"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "RealsenseD435CameraSubscriber/isaac.alice.TcpSubscriber/ColorSensor",
+      "target": "RealsenseD435ColorCameraViewer/isaac.viewers.ColorCameraViewer/color_listener"
+    },
+    {
+      "source": "RealsenseD435CameraSubscriber/isaac.alice.TcpSubscriber/DepthSensor",
+      "target": "RealsenseD435DepthCameraViewer/isaac.viewers.DepthCameraViewer/depth_listener"
+    },
+    {
+      "source": "base_simulation/isaac.flatsim.DifferentialBaseSimulator/diff_base_state",
+      "target": "raspimouse_odometry/isaac.navigation.DifferentialBaseWheelImuOdometry/state"
+    },
+    {
+      "source": "websight/WebsightServer/virtual_gamepad",
+      "target": "virtual_gamepad_bridge/VirtualGamepadBridge/request"
+    },
+    {
+      "source": "base_simulation/isaac.flatsim.DifferentialBaseSimulator/physics_actuation",
+      "target": "ActuatorPublisher/isaac.alice.TcpPublisher/physics_actuation"
+    },
+    {
+      "source": "RigidBodySubscriber/isaac.alice.TcpSubscriber/bodies",
+      "target": "base_simulation/isaac.flatsim.DifferentialBaseSimulator/physics_bodies"
+    },
+    {
+      "source": "base_simulation/isaac.flatsim.DifferentialBaseSimulator/diff_base_state",
+      "target": "raspimouse_odometry/isaac.navigation.DifferentialBaseWheelImuOdometry/state"
+    }
+  ]
+}
