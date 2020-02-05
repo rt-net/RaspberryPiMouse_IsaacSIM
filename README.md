@@ -10,44 +10,50 @@ Raspberry Pi MouseをIsaac Sim上でシミュレーションするためのIsaac
 * Isaac Sim: 2019.2
 
 ## Installation
-本パッケージをダウンロードします。
+* [Isaac SDK](https://docs.nvidia.com/isaac/isaac/doc/setup.htm)、[Isaac Sim](https://docs.nvidia.com/isaac/isaac_sim/setup.html)をインストールします。
+  * インストール手順については[Isaac SIMで走るRasPiMouse – セットアップ編](https://www.rt-shop.jp/blog/archives/11427)もぜひご参照ください。
+* 本パッケージをダウンロードします。
 
-```
-$ ~/isaac/apps
-$ git clone https://github.com/rt-net/RaspberryPiMouse_IsaacSIM.git
-```
-URDFモデルをコピーします。
-```
-$ cd RaspberryPiMouse_IsaacSIM
-$ cp -r raspimouse_description ~/UnrealEngine/IsaacSimProject/Content/URDF
-```
+  ```
+  $ cd ~/isaac/apps
+  $ git clone https://github.com/rt-net/RaspberryPiMouse_IsaacSIM.git
+  ```
+
+* URDFモデルをコピーします。
+
+  ```
+  $ cd RaspberryPiMouse_IsaacSIM
+  $ cp -r raspimouse_description ~/UnrealEngine/IsaacSimProject/Content/URDF
+  ```
 
 JSONファイルを編集します。ユーザー名等使用する環境に適宜合わせてください。
 
-```
-$ vim bridge_config/raspimouse_full.json
-```
+  ```
+  $ vim bridge_config/raspimouse_full.json
+  ```
+
 下記のようにraspimouse_full_graph.jsonとraspimouse_full_config.jsonのパスを記入します。
-```
-{
-    "graphs": ["/home/ubuntu/isaac/apps/RaspberryPiMouse_IsaacSIM/bridge_config/raspimouse_full_graph.json"],
-    "configs": ["/home/ubuntu/isaac/apps/RaspberryPiMouse_IsaacSIM/bridge_config/raspimouse_full_config.json"]
-}
-```
+
+  ```
+  {
+      "graphs": ["/home/ubuntu/isaac/apps/RaspberryPiMouse_IsaacSIM/bridge_config/raspimouse_full_graph.json"],
+      "configs": ["/home/ubuntu/isaac/apps/RaspberryPiMouse_IsaacSIM/bridge_config/raspimouse_full_config.json"]
+  }
+  ```
 
 ## Usage
-下記コマンドでUnreal Engineを起動し、シミュレータを実行します。
+* 下記コマンドでUnreal Engineを起動し、シミュレータを実行します。
 
-```
-$ ~/UnrealEngine/Engine/Binaries/Linux/UE4Editor IsaacSimProject FlatMap -vulkan -isaac_sim_config_json="/home/ubuntu/isaac/apps/RaspberryPiMouse_IsaacSIM/bridge_config/raspimouse_full.json"
-```
+  ```
+  $ ~/UnrealEngine/Engine/Binaries/Linux/UE4Editor IsaacSimProject FlatMap -vulkan -isaac_sim_config_json="/home/ubuntu/isaac/apps/RaspberryPiMouse_IsaacSIM/bridge_config/raspimouse_full.json"
+  ```
 
-下記コマンドでジョイスティック操作するパッケージを起動します。
+* 下記コマンドでジョイスティック操作するパッケージを起動します。
 
-```
-$ cd ~/isaac
-$ bazel run apps/RaspberryPiMouse_IsaacSIM:joystick
-```
+  ```
+  $ cd ~/isaac
+  $ bazel run apps/RaspberryPiMouse_IsaacSIM:joystick
+  ```
 
 ## License
 This repository is licensed under the MIT license, see [LICENSE](./LICENSE).
