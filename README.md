@@ -1,6 +1,9 @@
 # RaspberryPiMouse_IsaacSIM
 
-Raspberry Pi MouseをIsaac Sim上でシミュレーションするためのIsaacパッケージです。
+![raspimouse_isaac_sim](https://github.com/rt-net/RaspberryPiMouse_IsaacSIM/blob/images/images/raspimouse_isaac_sim.png "raspimouse_isaac_sim")
+
+Raspberry Pi MouseをIsaac Sim上でシミュレーションするためのIsaacパッケージです。  
+本パッケージはブログ記事[Isaac SIMで走るRasPiMouse[1] – セットアップ編](https://www.rt-shop.jp/blog/archives/11427)に際して作成されたものです。記事本編もぜひご覧ください。
 
 ## Requirements
 本パッケージは下記環境で動作確認ができています。
@@ -11,7 +14,7 @@ Raspberry Pi MouseをIsaac Sim上でシミュレーションするためのIsaac
 
 ## Installation
 * [Isaac SDK](https://docs.nvidia.com/isaac/isaac/doc/setup.htm)、[Isaac Sim](https://docs.nvidia.com/isaac/isaac_sim/setup.html)をインストールします。
-  * インストール手順については[Isaac SIMで走るRasPiMouse – セットアップ編](https://www.rt-shop.jp/blog/archives/11427)もぜひご参照ください。
+  * インストール手順については[Isaac SIMで走るRasPiMouse[1] – セットアップ編](https://www.rt-shop.jp/blog/archives/11427)もぜひご参照ください。
 * 本パッケージをダウンロードします。
 
   ```
@@ -26,13 +29,13 @@ Raspberry Pi MouseをIsaac Sim上でシミュレーションするためのIsaac
   $ cp -r raspimouse_description ~/UnrealEngine/IsaacSimProject/Content/URDF
   ```
 
-JSONファイルを編集します。ユーザー名等使用する環境に適宜合わせてください。
+* JSONファイルを編集します。ユーザー名等使用する環境に適宜合わせてください。
 
   ```
   $ vim bridge_config/raspimouse_full.json
   ```
 
-下記のようにraspimouse_full_graph.jsonとraspimouse_full_config.jsonのパスを記入します。
+* 下記のようにraspimouse_full_graph.jsonとraspimouse_full_config.jsonのパスを記入します。
 
   ```
   {
