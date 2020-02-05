@@ -48,3 +48,6 @@ $ ~/UnrealEngine/Engine/Binaries/Linux/UE4Editor IsaacSimProject FlatMap -vulkan
 $ cd ~/isaac
 $ bazel run apps/RaspberryPiMouse_IsaacSIM:joystick
 ```
+
+## License
+This repository is licensed under the MIT license, see [LICENSE](./LICENSE).
