@@ -1,4 +1,4 @@
 {
-  "graphs": ["/home/ubuntu/isaac/apps/RaspberryPiMouse_IsaacSIM/bridge_config/raspimouse_full_graph.json"],
-  "configs": ["/home/ubuntu/isaac/apps/RaspberryPiMouse_IsaacSIM/bridge_config/raspimouse_full_config.json"]
+  "graphs": ["/home/[username]/isaac/apps/RaspberryPiMouse_IsaacSIM/bridge_config/raspimouse_full_graph.json"],
+  "configs": ["/home/[username]/isaac/apps/RaspberryPiMouse_IsaacSIM/bridge_config/raspimouse_full_config.json"]
 }

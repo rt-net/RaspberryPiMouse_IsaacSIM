@@ -35,12 +35,12 @@ Raspberry Pi MouseをIsaac Sim上でシミュレーションするためのIsaac
   $ vim bridge_config/raspimouse_full.json
   ```
 
-* 下記のようにraspimouse_full_graph.jsonとraspimouse_full_config.jsonのパスを記入します。
+* 下記のようにraspimouse_full_graph.jsonとraspimouse_full_config.jsonのパスを記入します。[username]の部分を使用しているユーザー名に置き換えてください。
 
   ```
   {
-      "graphs": ["/home/ubuntu/isaac/apps/RaspberryPiMouse_IsaacSIM/bridge_config/raspimouse_full_graph.json"],
-      "configs": ["/home/ubuntu/isaac/apps/RaspberryPiMouse_IsaacSIM/bridge_config/raspimouse_full_config.json"]
+      "graphs": ["/home/[username]/isaac/apps/RaspberryPiMouse_IsaacSIM/bridge_config/raspimouse_full_graph.json"],
+      "configs": ["/home/[username]/isaac/apps/RaspberryPiMouse_IsaacSIM/bridge_config/raspimouse_full_config.json"]
   }
   ```
 
@@ -48,7 +48,7 @@ Raspberry Pi MouseをIsaac Sim上でシミュレーションするためのIsaac
 * 下記コマンドでUnreal Engineを起動し、シミュレータを実行します。
 
   ```
-  $ ~/UnrealEngine/Engine/Binaries/Linux/UE4Editor IsaacSimProject FlatMap -vulkan -isaac_sim_config_json="/home/ubuntu/isaac/apps/RaspberryPiMouse_IsaacSIM/bridge_config/raspimouse_full.json"
+  $ ~/UnrealEngine/Engine/Binaries/Linux/UE4Editor IsaacSimProject FlatMap -vulkan -isaac_sim_config_json="$HOME/isaac/apps/RaspberryPiMouse_IsaacSIM/bridge_config/raspimouse_full.json"
   ```
 
 * 下記コマンドでジョイスティック操作するパッケージを起動します。
