@@ -3,7 +3,11 @@
 ![raspimouse_isaac_sim](https://github.com/rt-net/RaspberryPiMouse_IsaacSIM/blob/images/images/raspimouse_isaac_sim.png "raspimouse_isaac_sim")
 
 Raspberry Pi MouseをIsaac Sim上でシミュレーションするためのIsaacパッケージです。  
-本パッケージはブログ記事[Isaac SIMで走るRasPiMouse[1] – セットアップ編](https://www.rt-shop.jp/blog/archives/11427)に際して作成されたものです。記事本編もぜひご覧ください。
+本パッケージは下記ブログ記事に際して作成されたものです。記事本編もぜひご覧ください。
+
+* [Isaac SIMで走るRasPiMouse [1] – セットアップ編](https://www.rt-shop.jp/blog/archives/11427)
+* [Isaac SIMで走るRasPiMouse [2] – ロボットを配置して走らせる](https://www.rt-shop.jp/blog/archives/11515)
+
 
 ## Requirements
 本パッケージは下記環境で動作確認ができています。
